@@ -32,17 +32,17 @@ void searchForMatch(const char* filename, const char* query) {
 
     int64_t offset = 0;
     char str[100];
-    const char* inputString = "this is a test \n sup gang \n sup bro";
-    char* tester = (char*) inputString;
+    int lengthOfString = 1;
+    char * endPoint;
 
 
 
-    for (int i = 0; i < 5; i++) {
+    while ( lengthOfString > 0) {
         // get string
-        tester+= offset;
+        buffer+= offset;
 
-        char * endPoint = (char *) memchr(tester, '\n', 60);
-        int lengthOfString = endPoint - tester;
+        endPoint = (char *) memchr(buffer, '\n', 180);
+        lengthOfString = endPoint - buffer;
         if (lengthOfString < 0) {
             printf("reached end of input");
             return;
@@ -50,30 +50,17 @@ void searchForMatch(const char* filename, const char* query) {
 
         offset = lengthOfString+1;
 
-        printf("size of first string: %d\n", lengthOfString);
 
-        memcpy(str, tester, lengthOfString);
+        memcpy(str, buffer, lengthOfString);
         str[lengthOfString] = '\0';
         
 
 
         printf("current str: %s\n", (char*) str);
 
-
-
-        // if( str != NULL ) {
-        //   /* writing content to stdout */
-        //     // printf("checking %s", str);
-        //     if (str == query) {
-        //         printf("found match for %s", str);
-        //         free(buffer);
-        //         return;
-        //     }
-
-        // }
     }
 
-    // free(buffer);
+
 
 }
 
